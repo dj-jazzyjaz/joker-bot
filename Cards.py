@@ -2,7 +2,7 @@
 #
 # Author: Evan Juras
 # Date: 9/5/17
-# Description: Functions and classes for CardDetector.py that perform 
+# Description: Functions and classes for CardDetectorVideo.py that perform
 # various steps of the card detection algorithm
 
 
