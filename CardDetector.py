@@ -87,5 +87,9 @@ class CardDetector:
 
         # Finally, display the image with the identified cards!
         cv2.imshow("Card Detector",image)
-        cv2.waitKey(0)
+        if len(cnts_sort) != 0:
+            return cards
+        else:
+            return []
+        #cv2.waitKey(0)
 
