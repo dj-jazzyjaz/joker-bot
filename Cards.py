@@ -14,8 +14,8 @@ import time
 ### Constants ###
 
 # Adaptive threshold levels
-BKG_THRESH = 140
-CARD_THRESH = 30
+BKG_THRESH = 120 #140
+CARD_THRESH = 10 #30
 
 # Width and height of card corner, where rank and suit are
 CORNER_WIDTH = 32
@@ -29,11 +29,11 @@ RANK_HEIGHT = 125
 SUIT_WIDTH = 70
 SUIT_HEIGHT = 100
 
-RANK_DIFF_MAX = 2000
+RANK_DIFF_MAX = 3000#2000
 SUIT_DIFF_MAX = 700
 
 CARD_MAX_AREA = 100000#120000
-CARD_MIN_AREA = 10000
+CARD_MIN_AREA = 8000 #10000
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
@@ -130,7 +130,7 @@ def preprocess_image(image):
 
     retval, thresh = cv2.threshold(blur, thresh_level, 255, cv2.THRESH_BINARY)
 
-    #cv2.imshow("Threshold", thresh)
+    cv2.imshow("Threshold", thresh)
     #cv2.waitKey(0)
 
     return thresh
@@ -175,6 +175,7 @@ def find_cards(thresh_image):
         if ((size < CARD_MAX_AREA) and (size > CARD_MIN_AREA)
                 and (hier_sort[i][3] == -1) and (len(approx) == 4)):
             cnt_is_card[i] = 1
+            #print("card size", size)
 
     count_img = cv2.drawContours(thresh_image, cnts_sort, -1, (0, 255, 0), 3)
     #cv2.imshow("counters", count_img)
